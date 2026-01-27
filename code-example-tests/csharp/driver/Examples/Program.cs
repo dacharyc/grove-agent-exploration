@@ -1,0 +1,2 @@
+Console.WriteLine(
+    "This project is not intended to be run as a console application. Run the tests using the 'Tests' solution.");

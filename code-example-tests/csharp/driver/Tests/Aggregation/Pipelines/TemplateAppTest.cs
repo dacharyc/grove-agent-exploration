@@ -1,0 +1,44 @@
+using DotNetEnv;
+using Examples.Aggregation.Pipelines;
+using MongoDB.Driver;
+
+namespace Tests.Aggregation.Pipelines;
+
+public class TemplateAppTest
+{
+    private IMongoClient _client;
+    private TemplateApp _example;
+
+    [SetUp]
+    [Description("Initializes the MongoDB client and template app instance before each test")]
+    public void Setup()
+    {
+        var connectionString = Env.GetString("CONNECTION_STRING",
+            "Env variable not found. Verify you have a .env file with a valid connection string.");
+        _client = new MongoClient(connectionString);
+
+        _example = new TemplateApp();
+    }
+
+    [Test]
+    [Description("Tests that the Aggregation template app produces the expected filtered output with correct count and values")]
+    public void TestAppProducesExpectedOutput()
+    {
+        var results = _example.RunApp();
+        var expectedOutputCount = 1;
+        var expectedOutput = "sample2";
+        Assert.That(results.Count, Is.EqualTo(expectedOutputCount),
+            $"Result count {results.Count} does not match output example length {expectedOutputCount}.");
+        Assert.That(results[0].StringValue, Is.EqualTo(expectedOutput),
+            $"Result '{results[0]}' does not match expected output '{expectedOutput}'.");
+    }
+
+    [TearDown]
+    [Description("Cleans up the test database and disposes the MongoDB client after each test")]
+    public void TearDown()
+    {
+        // Drop the database after the test completes  
+        _client.DropDatabase("agg_tutorials_db");
+        _client.Dispose();
+    }
+}

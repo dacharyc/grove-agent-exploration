@@ -1,0 +1,39 @@
+{
+  "name": "node-driver",
+  "version": "1.0.0",
+  "description": "This is the code example test suite for the Node.js Driver examples across the MongoDB documentation.",
+  "engines": {
+    "node": ">=24.4.1",
+    "npm": ">=10.0.0"
+  },
+  "main": "index.js",
+  "directories": {
+    "example": "examples",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "export $(xargs < .env) && jest --runInBand --detectOpenHandles --testMatch='**/tests/**/*.test.js'",
+    "test:utils": "export $(xargs < .env 2>/dev/null || true) && jest --runInBand --detectOpenHandles --testMatch='**/utils/__tests__/**/*.test.js'",
+    "test:all": "export $(xargs < .env) && jest --runInBand --detectOpenHandles",
+    "snip": "node snip.js",
+    "format": "prettier --write ."
+  },
+  "keywords": [],
+  "author": "MongoDB",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "@babel/core": "^7.28.5",
+    "@babel/preset-env": "^7.28.5",
+    "babel-jest": "^30.2.0",
+    "eslint": "^9.39.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "jest": "^30.2.0",
+    "prettier": "^3.6.2"
+  },
+  "dependencies": {
+    "bluehawk": "^1.6.0",
+    "mongodb": "7.0.0"
+  }
+}
