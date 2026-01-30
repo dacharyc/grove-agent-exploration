@@ -1,0 +1,13 @@
+{
+  "name": "mdb-vs-index",
+  "total_pages": 1,
+  "base_url": "https://www.mongodb.com/docs/atlas/atlas-vector-search/vector-search-type.md/",
+  "llms_txt_detected": true,
+  "llms_txt_variant": null,
+  "pages": [
+    {
+      "title": "How to Index Fields for Vector Search",
+      "url": "https://www.mongodb.com/docs/atlas/atlas-vector-search/vector-search-type.md/"
+    }
+  ]
+}
